@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import React, {useState, useEffect} from 'react';
+import ModelList from './ModelList';
+import ModelForm from './ModelForm';
+import AutomobileForm from './AutomobileForm';
 
 
 function App() {
@@ -58,7 +61,7 @@ function App() {
           </Route>
           <Route path="automobiles">
             <Route index element={<AutomobileList automobiles={automobiles} getAutomobiles={getAutomobiles}/>} />
-            <Route path="new" element={<AutomobileList automobiles={automobiles} getAutomobiles={getAutomobiles}/>} />
+            <Route path="new" element={<AutomobileForm automobiles={automobiles} getAutomobiles={getAutomobiles}/>} />
           </Route>
           </Routes>
       </div>
