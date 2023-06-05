@@ -3,8 +3,7 @@
 Team:
 
 * Person 1 - Which microservice?
-* Person 2 - Which microservice?
-Dream Service microservice
+* Person 2 - Alvin Liang - Automobile Sales
 
 ## Design
 
