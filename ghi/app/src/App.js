@@ -2,9 +2,18 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import React, {useState, useEffect} from 'react';
+<<<<<<< HEAD
 import ModelList from './ModelList';
 import ModelForm from './ModelForm';
 import AutomobileForm from './AutomobileForm';
+=======
+import AutomobileForm from './AutomobileForm';
+import AutomobileList from './AutomobileList';
+import ManufacturerForm from './ManufacturerForm';
+import ManufacturersList from './ManufacturerList';
+import ModelForm from './ModelForm';
+import ModelList from './ModelList';
+>>>>>>> main
 
 
 function App() {
