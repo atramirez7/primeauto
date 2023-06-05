@@ -2,7 +2,7 @@
 
 Team:
 
-* Person 1 - Which microservice?
+* Person 1 - Dream Ramirez - Service
 * Person 2 - Alvin Liang - Automobile Sales
 
 ## Design
