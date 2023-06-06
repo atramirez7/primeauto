@@ -8,12 +8,21 @@ import ManufacturerForm from './ManufacturerForm';
 import ManufacturersList from './ManufacturerList';
 import ModelForm from './ModelForm';
 import ModelList from './ModelList';
+import SalespersonForm from './SalespersonForm';
+import SalespersonList from './SalespersonList';
+import CustomerList from './CustomerList';
+import CustomerForm from './CustomerForm';
+import SalesList from './SalesList'
+import SalesForm from './SalesForm'
 
 
 function App() {
   const [ manufacturers, setManufacturers ] = useState([]);
   const [ models, setModels ] = useState([]);
   const [ automobiles, setAutomobiles ] = useState([]);
+  const [ salespersons, setSalespersons ] = useState([])
+  const [ customers, setCustomers] = useState([])
+  const [ sales, setSales] = useState([])
 
   async function getManufacturers(){
     const url = 'http://localhost:8100/api/manufacturers/';
@@ -44,10 +53,44 @@ function App() {
     }
   }
 
+  async function getSalespersons(){
+    const url = 'http://localhost:8090/api/salespeople/'
+    const response = await fetch(url);
+    if (response.ok){
+      const data = await response.json();
+      setSalespersons(data.salesperson)
+    }
+  }
+
+  async function getCustomers() {
+    const url = 'http://localhost:8090/api/customers/'
+    const response = await fetch(url);
+    if(response.ok){
+      const data = await response.json();
+      setCustomers(data.customer)
+    }
+  }
+
+  async function getSales() {
+    const url = '	http://localhost:8090/api/sales/'
+    const response = await fetch(url);
+    if(response.ok){
+      const data = await response.json();
+      setSales(data.sale)
+    }
+  }
+
+
+
+
+
   useEffect(()=>{
     getManufacturers();
     getModels();
     getAutomobiles();
+    getSalespersons();
+    getCustomers();
+    getSales();
   }, []);
 
   return (
@@ -67,6 +110,18 @@ function App() {
           <Route path="automobiles">
             <Route index element={<AutomobileList automobiles={automobiles}/>} />
             <Route path="new" element={<AutomobileForm automobiles={automobiles} getModels={getModels} getAutomobiles={getAutomobiles} />} />
+          </Route>
+          <Route path="salespersons">
+            <Route index element={<SalespersonList salespersons={salespersons} getSalespersons={getSalespersons} />} />
+            <Route path="new" element={<SalespersonForm salespersons={salespersons} getSalespersons={getSalespersons} />} />
+          </Route>
+          <Route path="customers">
+            <Route index element={<CustomerList customers={customers} getCustomers={getCustomers} /> } />
+            <Route path="new" element={<CustomerForm customers={customers} getCustomers={getCustomers} />} />
+          </Route>
+          <Route path="sales">
+            <Route index element={<SalesList sales={sales} getSales={getSales} />} />
+            <Route path="new" element={<SalesForm sales={sales} getSales={getSales} /> } />
           </Route>
           </Routes>
       </div>
