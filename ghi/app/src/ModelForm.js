@@ -75,7 +75,7 @@ function ModelForm ({ models, getModels, manufacturers, getManufacturers }) {
                   <option value="">Choose a Manufacturer</option>
                     {manufacturers.map(manufacturer => {
                         return(
-                            <option key={manufacturer.href} value={manufacturer.id}>
+                            <option key={manufacturer.id} value={manufacturer.id}>
                                 {manufacturer.name}
                             </option>
                         )

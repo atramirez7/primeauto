@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function ManufacturerForm(){
+function ManufacturerForm({ getManufacturers }){
 
     const [name, setName] = useState("");
 
@@ -25,7 +25,7 @@ function ManufacturerForm(){
         const response = await fetch(manufacturerUrl, fetchConfig);
         if (response.ok) {
             const newManufacturer = await response.json();
-
+            getManufacturers()
             setName('');
         }
     }

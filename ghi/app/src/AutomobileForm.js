@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function AutomobileForm () {
+function AutomobileForm ( { getAutomobiles } ) {
 
     const [color, setColor] = useState("");
     const [year, setYear] = useState("");
@@ -53,7 +53,7 @@ function AutomobileForm () {
         if (response.ok) {
           const newAutomobiles = await response.json();
           console.log(newAutomobiles);
-
+          getAutomobiles()
           setModel('');
           setColor('');
           setYear('');
