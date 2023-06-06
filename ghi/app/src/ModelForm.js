@@ -31,7 +31,6 @@ function ModelForm ({ models, getModels, manufacturers, getManufacturers }) {
     async function handleSubmit (e) {
         e.preventDefault()
         const data = {}
-        console.log(data)
         data.name = name
         data.picture_url = picture
         data.manufacturer_id = manufacturer
@@ -48,7 +47,6 @@ function ModelForm ({ models, getModels, manufacturers, getManufacturers }) {
         const response = await fetch(vehicleUrl, fetchConfig);
         if (response.ok) {
         const newVehicle = await response.json();
-         console.log(newVehicle)
         getModels()
         setName('')
         setPicture('')
