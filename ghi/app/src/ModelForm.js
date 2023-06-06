@@ -9,9 +9,9 @@ function ModelForm ({ models, getModels, manufacturers, getManufacturers }) {
     const [picture, setPicture] = useState('')
     const [manufacturer, setManufacturer] = useState('')
 
-    useEffect(() =>{
-        getManufacturers()
-    }, [])
+    // useEffect(() =>{
+    //     getManufacturers()
+    // }, [])
 
     function handleNameChange (e) {
         const value = e.target.value;
