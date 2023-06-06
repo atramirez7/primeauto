@@ -1,10 +1,13 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
 class AutomobileVO(models.Model):
     vin = models.CharField(max_length=17, unique=True)
     sold = models.BooleanField(default=False)
+
+
 
 class Salesperson(models.Model):
     first_name = models.CharField(max_length=100)
@@ -17,7 +20,7 @@ class Customer(models.Model):
     phone_number = models.PositiveIntegerField()
 
 class Sale(models.Model):
-    price = models.SmallIntegerField()
+    price = models.PositiveIntegerField()
     automobile = models.ForeignKey(
         AutomobileVO,
         related_name="automobiles",
