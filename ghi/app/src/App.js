@@ -57,7 +57,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="manufacturers">
-            <Route index element={<ManufacturersList manufacturers={manufacturers} getManufacturers={getManufacturers}/>} />
+            <Route index element={<ManufacturersList manufacturers={manufacturers}/>} />
             <Route path="new" element={<ManufacturerForm manufacturers={manufacturers} getManufacturers={getManufacturers}/>} />
           </Route>
           <Route path="models">
@@ -65,8 +65,8 @@ function App() {
             <Route path="new" element={<ModelForm models={models} getModels={getModels} manufacturers={manufacturers} getManufacturers={getManufacturers}/>} />
           </Route>
           <Route path="automobiles">
-            <Route index element={<AutomobileList automobiles={automobiles} getAutomobiles={getAutomobiles}/>} />
-            <Route path="new" element={<AutomobileForm automobiles={automobiles} getAutomobiles={getAutomobiles}/>} />
+            <Route index element={<AutomobileList automobiles={automobiles}/>} />
+            <Route path="new" element={<AutomobileForm automobiles={automobiles} getModels={getModels}/>} />
           </Route>
           </Routes>
       </div>
