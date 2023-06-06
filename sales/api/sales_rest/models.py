@@ -9,19 +9,19 @@ class AutomobileVO(models.Model):
 class Salesperson(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    employee_id = models.SmallIntegerField()
+    employee_id = models.PositiveIntegerField()
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    phone_number = models.SmallIntegerField()
+    phone_number = models.PositiveIntegerField()
 
 class Sale(models.Model):
     price = models.SmallIntegerField()
     automobile = models.ForeignKey(
         AutomobileVO,
         related_name="automobiles",
-        on_delete=models.PROTECT
+        on_delete=models.CASCADE
         )
     salesperson = models.ForeignKey(
         Salesperson,
