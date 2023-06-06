@@ -21,6 +21,7 @@ function App() {
     if (response.ok){
       const data = await response.json();
       setManufacturers(data.manufacturers);
+      console.log(data)
     }
   }
 
@@ -30,6 +31,7 @@ function App() {
     if (response.ok){
       const data = await response.json();
       setModels(data.models);
+      console.log(data)
     }
   }
 
@@ -60,7 +62,7 @@ function App() {
           </Route>
           <Route path="models">
             <Route index element={<ModelList models={models} getModels={getModels}/>} />
-            <Route path="new" element={<ModelForm models={models} getModels={getModels}/>} />
+            <Route path="new" element={<ModelForm models={models} getModels={getModels} manufacturers={manufacturers} getManufacturers={getManufacturers}/>} />
           </Route>
           <Route path="automobiles">
             <Route index element={<AutomobileList automobiles={automobiles}/>} />
