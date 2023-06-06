@@ -28,10 +28,10 @@ class Technician(models.Model):
 class Appointment(models.Model):
     date_time = models.DateTimeField()
     reason = models.CharField(max_length=400)
-    status = models.CharField(max_length=200)
+    status = models.CharField(max_length=200, default="New")
     vin = models.CharField(max_length=17)
     customer = models.CharField(max_length=400)
-    vip = models.BooleanField()
+    vip = models.BooleanField(default=False, null=True)
     technician = models.ForeignKey(
         Technician,
         related_name="appointments",

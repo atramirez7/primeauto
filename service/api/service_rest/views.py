@@ -55,6 +55,10 @@ def api_list_appointments(request):
             technician_id = content["technician_id"]
             technician = Technician.objects.get(pk=technician_id)
             content["technician"] = technician
+            vin_auto = content["vin"]
+            if AutomobileVO.objects.filter(vin=vin_auto).exists():
+                content["vip"] = True
+
             appointment = Appointment.objects.create(**content)
             return JsonResponse(
                 appointment,
@@ -68,3 +72,19 @@ def api_list_appointments(request):
             )
             response.status_code = 400
             return response
+
+@require_http_methods(["DELETE", "PUT"])
+def api_update_appointments(request, pk):
+    if request.method == "DELETE":
+        count, _ = Appointment.objects.filter(id=pk).delete()
+        return JsonResponse({"deleted": count > 0})
+
+    else:
+        content = json.loads(request.body)
+        Appointment.objects.filter(id=pk).update(**content)
+        appointment = Appointment.objects.get(id=pk)
+        return JsonResponse(
+            appointment,
+            encoder=AppointmentEncoder,
+            safe=False,
+        )
