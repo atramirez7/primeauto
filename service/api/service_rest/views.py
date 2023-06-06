@@ -33,8 +33,12 @@ def api_list_technicians(request):
 
 @require_http_methods(["DELETE"])
 def api_delete_technicians(request, pk):
-    count, _ = Technician.objects.filter(id=pk).delete()
-    return JsonResponse({"deleted": count > 0})
+    try:
+        count, _ = Technician.objects.filter(id=pk).delete()
+        return JsonResponse({"deleted": count > 0})
+
+    except Technician.DoesNotExist:
+        return JsonResponse({"message": "Does not exist"})
 
 @require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
@@ -44,3 +48,23 @@ def api_list_appointments(request):
                 {"appoinments": appointments},
                 encoder=AppointmentEncoder,
             )
+
+    else:
+        try:
+            content = json.loads(request.body)
+            technician_id = content["technician_id"]
+            technician = Technician.objects.get(pk=technician_id)
+            content["technician"] = technician
+            appointment = Appointment.objects.create(**content)
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+
+        except:
+            response = JsonResponse(
+                {"message": "Could not create the appointment"}
+            )
+            response.status_code = 400
+            return response
