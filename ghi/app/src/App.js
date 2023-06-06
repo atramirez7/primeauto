@@ -25,14 +25,14 @@ function App() {
   const [ manufacturers, setManufacturers ] = useState([]);
   const [ models, setModels ] = useState([]);
   const [ automobiles, setAutomobiles ] = useState([]);
-<<<<<<< HEAD
   const [ technicians, setTechnicians ] = useState([]);
+  const [ sales, setSales ] = useState([]);
   const [ appointments, setAppointments ] = useState([]);
   const [ salespersons, setSalespersons ] = useState([])
   const [ customers, setCustomers] = useState([])
->>>>>>> main
 
   async function getManufacturers(){
+    const url = 'http://localhost:8100/api/manufacturers/';
     const response = await fetch(url);
     if (response.ok){
       const data = await response.json();
@@ -74,6 +74,9 @@ function App() {
     if (response.ok){
       const data = await response.json();
       setAppointments(data.appoinments);
+    }
+  }
+
   async function getSalespersons(){
     const url = 'http://localhost:8090/api/salespeople/'
     const response = await fetch(url);
@@ -101,11 +104,6 @@ function App() {
   }
 
 
-<<<<<<< HEAD
-
-
-
->>>>>>> main
   useEffect(()=>{
     getManufacturers();
     getModels();
@@ -143,6 +141,7 @@ function App() {
             <Route index element={<AppointmentList appointments={appointments}/>} />
             <Route path="new" element={<AppointmentForm appointments={appointments} getAppointments={getAppointments} />} />
             <Route path="history" element={<AppointmentHistory appointments={appointments} getAppointments={getAppointments} />} />
+          </Route>
           <Route path="salespersons">
             <Route index element={<SalespersonList salespersons={salespersons} getSalespersons={getSalespersons} />} />
             <Route path="new" element={<SalespersonForm salespersons={salespersons} getSalespersons={getSalespersons} />} />
