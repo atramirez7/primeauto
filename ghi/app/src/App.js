@@ -69,7 +69,7 @@ function App() {
   }
 
   async function getAppointments(){
-    const url = 'http://localhost:8080/api/appoinments/';
+    const url = 'http://localhost:8080/api/appointments/';
     const response = await fetch(url);
     if (response.ok){
       const data = await response.json();
