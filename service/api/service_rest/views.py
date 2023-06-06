@@ -11,7 +11,7 @@ from .encoders import (
 # Create your views here.
 
 @require_http_methods(["POST", "GET"])
-def api_list_technician(request):
+def api_list_technicians(request):
     if request.method == "GET":
         technicians = Technician.objects.all()
 
@@ -30,3 +30,17 @@ def api_list_technician(request):
             encoder=TechnicianEncoder,
             safe=False
         )
+
+@require_http_methods(["DELETE"])
+def api_delete_technicians(request, pk):
+    count, _ = Technician.objects.filter(id=pk).delete()
+    return JsonResponse({"deleted": count > 0})
+
+@require_http_methods(["GET", "POST"])
+def api_list_appointments(request):
+    if request.method == "GET":
+        appointments = Appointment.objects.all()
+        return JsonResponse(
+                {"appoinments": appointments},
+                encoder=AppointmentEncoder,
+            )

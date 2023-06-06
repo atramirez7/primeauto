@@ -42,4 +42,4 @@ class Appointment(models.Model):
         return f"{self.date_time} / {self.customer}"
 
     class Meta:
-        ordering = ("date_time")
+        ordering = ("date_time", "vin")
