@@ -29,7 +29,7 @@ class Appointment(models.Model):
     date_time = models.DateTimeField()
     reason = models.CharField(max_length=400)
     status = models.CharField(max_length=200)
-    vin = models.CharField(max_length=17, unique=True)
+    vin = models.CharField(max_length=17)
     customer = models.CharField(max_length=400)
     vip = models.BooleanField()
     technician = models.ForeignKey(
