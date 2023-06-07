@@ -1,5 +1,41 @@
 
 function AppointmentList ({ appointments }) {
+
+  const handleButtonClick = async (event, buttonID, id) => {
+    event.preventDefault();
+
+    if (buttonID === "cancel") {
+        const data = {
+            "status":"canceled"
+        }
+
+        const cancelURL = `http://localhost:8080/api/appointments/${id}/cancel/`;
+        const fetchConfig = {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+        await fetch(cancelURL,fetchConfig);
+
+      } else if (buttonID === "finish") {
+        const data = {
+            "status":"finished"
+        }
+
+        const finishURL = `http://localhost:8080/api/appointments/${id}/finish/`;
+        const fetchConfig = {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+        await fetch(finishURL,fetchConfig)
+    }
+  }
+
   return (
     <>
     <h1>Service Appointments</h1>
@@ -39,8 +75,8 @@ function AppointmentList ({ appointments }) {
               <td>{appointment.technician.first_name} {appointment.technician.last_name}</td>
               <td>{ appointment.reason }</td>
               <td>
-                <button type="button" className="btn btn-success">Finish</button>
-                <button type="button" className="btn btn-danger">Cancel</button>
+                <button type="button" className="btn btn-success" onClick={(event) => handleButtonClick(event,'finish', [appointment.id])}>Finish</button>
+                <button type="button" className="btn btn-danger" onClick={(event) => handleButtonClick(event,'cancel', [appointment.id])}>Cancel</button>
               </td>
             </tr>
           );

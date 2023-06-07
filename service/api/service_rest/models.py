@@ -5,7 +5,7 @@ from django.urls import reverse
 
 class AutomobileVO(models.Model):
     vin = models.CharField(max_length=17, unique=True)
-    sold = models.BooleanField(default=False)
+    sold = models.BooleanField()
 
     def __str__(self):
         return self.vin

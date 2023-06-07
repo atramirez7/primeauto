@@ -56,7 +56,7 @@ def api_list_appointments(request):
             technician = Technician.objects.get(pk=technician_id)
             content["technician"] = technician
             vin_auto = content["vin"]
-            if AutomobileVO.objects.filter(vin=vin_auto, sold=True).exists():
+            if AutomobileVO.objects.filter(vin=vin_auto).exists():
                 content["vip"] = True
 
             appointment = Appointment.objects.create(**content)
@@ -81,6 +81,15 @@ def api_update_appointments(request, pk):
 
     else:
         content = json.loads(request.body)
+        status = content.get("status")
+
+        if status == "canceled":
+            Appointment.objects.filter(id=pk).update(status="canceled")
+        elif status == "finished":
+            Appointment.objects.filter(id=pk).update(status="finished")
+        else:
+            return JsonResponse({"message": "Invalid status"}, status=400)
+
         Appointment.objects.filter(id=pk).update(**content)
         appointment = Appointment.objects.get(id=pk)
         return JsonResponse(

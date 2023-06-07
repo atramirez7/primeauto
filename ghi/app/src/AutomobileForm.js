@@ -68,9 +68,9 @@ function AutomobileForm ( { getAutomobiles } ) {
 
             }
         }
-        useEffect(() => {
-            fetchData();
-          }, []);
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <form onSubmit={handleSubmit} id="add-automobiles-form">
