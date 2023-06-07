@@ -19,6 +19,7 @@ import CustomerList from './CustomerList';
 import CustomerForm from './CustomerForm';
 import SalesList from './SalesList'
 import SalesForm from './SalesForm'
+import SalespersonHistory from './SalesPersonHistory';
 
 
 function App() {
@@ -154,6 +155,7 @@ function App() {
           <Route path="sales">
             <Route index element={<SalesList sales={sales} getSales={getSales} />} />
             <Route path="new" element={<SalesForm sales={sales} automobiles={automobiles} salespersons={salespersons} customers={customers} getSales={getSales} /> } />
+            <Route path="history" element={<SalespersonHistory sales={sales} automobiles={automobiles} salespersons={salespersons} customers={customers} getSales={getSales} /> } />
           </Route>
           </Routes>
       </div>
