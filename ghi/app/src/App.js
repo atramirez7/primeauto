@@ -37,7 +37,6 @@ function App() {
     if (response.ok){
       const data = await response.json();
       setManufacturers(data.manufacturers);
-      console.log(data)
     }
   }
 
@@ -47,7 +46,6 @@ function App() {
     if (response.ok){
       const data = await response.json();
       setModels(data.models);
-      console.log(data)
     }
   }
 
@@ -65,6 +63,7 @@ function App() {
     const response = await fetch(url);
     if (response.ok){
       const data = await response.json();
+      setTechnicians(data.technicians)
     }
   }
 
@@ -82,6 +81,7 @@ function App() {
     const response = await fetch(url);
     if (response.ok){
       const data = await response.json();
+      setSalespersons(data.salesperson)
     }
   }
 

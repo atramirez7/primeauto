@@ -36,7 +36,6 @@ function AutomobileForm ( { getAutomobiles } ) {
         formdata.vin = vin;
         formdata.year = year;
         formdata.model_id = model;
-        console.log(formdata);
 
 
         const automobileUrl = 'http://localhost:8100/api/automobiles/';
@@ -52,7 +51,6 @@ function AutomobileForm ( { getAutomobiles } ) {
         console.log(response);
         if (response.ok) {
           const newAutomobiles = await response.json();
-          console.log(newAutomobiles);
           getAutomobiles()
           setModel('');
           setColor('');
