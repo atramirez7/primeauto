@@ -154,8 +154,8 @@ function App() {
           </Route>
           <Route path="sales">
             <Route index element={<SalesList sales={sales} getSales={getSales} />} />
-            <Route path="new" element={<SalesForm sales={sales} automobiles={automobiles} salespersons={salespersons} customers={customers} getSales={getSales} /> } />
-            <Route path="history" element={<SalespersonHistory sales={sales} automobiles={automobiles} salespersons={salespersons} getSalespersons={getSalespersons} customers={customers} getSales={getSales} /> } />
+            <Route path="new" element={<SalesForm sales={sales} automobiles={automobiles} salespersons={salespersons} customers={customers} getSales={getSales} getAutomobiles={getAutomobiles} /> } />
+            <Route path="history" element={<SalespersonHistory sales={sales} automobiles={automobiles}  salespersons={salespersons} getSalespersons={getSalespersons} customers={customers} getSales={getSales} /> } />
           </Route>
           </Routes>
       </div>

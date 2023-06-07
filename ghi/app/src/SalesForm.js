@@ -1,12 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function SalesForm({ automobiles, salespersons, customers, getSales }) {
+function SalesForm({ getAutomobiles, salespersons, customers, getSales }) {
 
+    const [automobiles, setAutomobiles] = useState([])
     const [vin, setVin] = useState('')
     const [salesperson, setSalesperson] = useState('')
     const [customer, setCustomer] = useState('')
     const [price, setPrice] = useState('')
+
+
+    async function filterAutomobiles(){
+      const url = 'http://localhost:8100/api/automobiles/';
+      const response = await fetch(url);
+      if (response.ok){
+        const data = await response.json();
+        const unsold = data.autos.filter(auto => auto.sold === false)
+        setAutomobiles(unsold)
+      }
+    }
+
+    useEffect(() => {
+      filterAutomobiles()
+    },[])
 
     function handleVinChange (e) {
         const value = e.target.value;
@@ -28,6 +44,18 @@ function SalesForm({ automobiles, salespersons, customers, getSales }) {
         setPrice(value)
     }
 
+    async function updateSoldStatus (vin) {
+      const automobileUrl = 'http://localhost:8100/api/automobiles/' + vin + "/"
+      const fetchConfig = {
+        method: 'put',
+        body: JSON.stringify({"sold": true}),
+        headers: {
+          "Content-Type": "application/json"
+        },
+      }
+      const response = await fetch(automobileUrl, fetchConfig);
+    }
+
     async function handleSubmit (e) {
     e.preventDefault()
     const data = {}
@@ -35,7 +63,6 @@ function SalesForm({ automobiles, salespersons, customers, getSales }) {
     data.salesperson_id = salesperson
     data.customer_id = customer
     data.price = price
-    console.log(data)
 
     const saleUrl = 'http://localhost:8090/api/sales/'
     const fetchConfig = {
@@ -46,9 +73,12 @@ function SalesForm({ automobiles, salespersons, customers, getSales }) {
         },
         };
 
+
     const response = await fetch(saleUrl, fetchConfig);
     if (response.ok) {
     const newSale = await response.json();
+    await updateSoldStatus(vin)
+    getAutomobiles()
     getSales()
     setSalesperson('')
     setCustomer('')
