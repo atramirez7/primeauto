@@ -31,4 +31,4 @@ function SalespersonHistory ({ sales }) {
 }
 
 
-export default SalesPersonHistory
+export default SalespersonHistory
