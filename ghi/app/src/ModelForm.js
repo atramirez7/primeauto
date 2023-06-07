@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function ModelForm ({ models, getModels, manufacturers, getManufacturers }) {
+function ModelForm ({ getModels, manufacturers }) {
 
     const navigate = useNavigate()
     const [vehicle, setVehicle] = useState([])

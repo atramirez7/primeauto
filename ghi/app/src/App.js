@@ -37,7 +37,6 @@ function App() {
     if (response.ok){
       const data = await response.json();
       setManufacturers(data.manufacturers);
-      console.log(data)
     }
   }
 
@@ -47,7 +46,6 @@ function App() {
     if (response.ok){
       const data = await response.json();
       setModels(data.models);
-      console.log(data)
     }
   }
 
@@ -65,6 +63,7 @@ function App() {
     const response = await fetch(url);
     if (response.ok){
       const data = await response.json();
+      setTechnicians(data.technicians)
     }
   }
 
@@ -82,6 +81,7 @@ function App() {
     const response = await fetch(url);
     if (response.ok){
       const data = await response.json();
+      setSalespersons(data.salesperson)
     }
   }
 
@@ -95,11 +95,12 @@ function App() {
   }
 
   async function getSales() {
-    const url = '	http://localhost:8090/api/sales/'
+    const url = 'http://localhost:8090/api/sales/'
     const response = await fetch(url);
     if(response.ok){
       const data = await response.json();
       setSales(data.sale)
+      console.log(data)
     }
   }
 
@@ -152,7 +153,7 @@ function App() {
           </Route>
           <Route path="sales">
             <Route index element={<SalesList sales={sales} getSales={getSales} />} />
-            <Route path="new" element={<SalesForm sales={sales} getSales={getSales} /> } />
+            <Route path="new" element={<SalesForm sales={sales} automobiles={automobiles} salespersons={salespersons} customers={customers} getSales={getSales} /> } />
           </Route>
           </Routes>
       </div>
