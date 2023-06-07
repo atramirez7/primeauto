@@ -5,7 +5,7 @@ Team:
 * Dream Ramirez - Automobile Service
 * Alvin Liang - Automobile Sales
 
-## Getting Started
+## How to Run this App
 ​
 **Make sure you have Docker, Git, and Node.js 18.2 or above**
 ​
@@ -24,21 +24,23 @@ docker-compose up
 ​
 - View the project in the browser: http://localhost:3000/
 
-## Design
+## Diagram
 CarCar is made up of 3 microservices which interact with one another.
 
 - **Inventory**
-- **Services**
+- **Service**
 - **Sales**
 ​
 ![Img](Diagram.png)
 
-## Service microservice
+## API Documentation
 
-Explain your models and integration with the inventory
-microservice, here.
+### Service microservice
 
-## Sales microservice
+Service microservice is used to keep track of **Technicians** with their first name, last name, and employee id; **Service Appointment** that contains the details collected in the form: VIN, customer name, date and time of the appointment, the assigned technician's name, and the reason for the service.
+It polls data from **Inventory** microservice to get VIN and sold status. When VIN provided for an appointment exists in VIN inventory, it has a special feature that 
+
+### Sales microservice
 
 Explain your models and integration with the inventory
 microservice, here.
