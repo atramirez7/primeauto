@@ -18,6 +18,8 @@ function AppointmentList ({ appointments, getAppointments }) {
               },
             }
         await fetch(cancelURL,fetchConfig);
+        getAppointments();
+        window.location.reload();
 
       } else if (buttonID === "finish") {
         const data = {
@@ -33,7 +35,8 @@ function AppointmentList ({ appointments, getAppointments }) {
               },
             }
         await fetch(finishURL,fetchConfig)
-        getAppointments()
+        getAppointments();
+        window.location.reload();
     }
   }
 
@@ -55,6 +58,7 @@ function AppointmentList ({ appointments, getAppointments }) {
       </thead>
       <tbody>
         {appointments.map(appointment => {
+          if (appointment.status !== "canceled" && appointment.status !== "finished") {
           const date = new Date(appointment.date_time);
           const formattedDate = date.toLocaleDateString("en-US", {
             month: "2-digit",
@@ -81,7 +85,7 @@ function AppointmentList ({ appointments, getAppointments }) {
               </td>
             </tr>
           );
-        })}
+        }})}
       </tbody>
     </table>
     </>
