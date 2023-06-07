@@ -7,8 +7,8 @@ function ModelList ({ models, getModels }) {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Picture Url</th>
             <th>Manufacturer</th>
+            <th>Picture</th>
           </tr>
         </thead>
         <tbody>
@@ -17,7 +17,7 @@ function ModelList ({ models, getModels }) {
             <tr key={model.id}>
               <td>{model.name}</td>
               <td>{model.manufacturer.name}</td>
-              <td>{model.picture_url}</td>
+              <td><img src={model.picture_url} className="img-thumbnail" width="200" height="200" /></td>
             </tr>
             );
           })}
