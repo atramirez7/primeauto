@@ -14,7 +14,7 @@ function AppoinmentHistory ({ appointments }) {
               <th>Time</th>
               <th>Technician</th>
               <th>Reason</th>
-              <th> </th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -39,10 +39,7 @@ function AppoinmentHistory ({ appointments }) {
                   <td>{ formattedTime }</td>
                   <td>{appointment.technician.first_name} {appointment.technician.last_name}</td>
                   <td>{ appointment.reason }</td>
-                  <td>
-                    <button type="button" className="btn btn-success">Finish</button>
-                    <button type="button" className="btn btn-danger">Cancel</button>
-                  </td>
+                  <td>{ appointment.status }</td>
                 </tr>
               );
             })}

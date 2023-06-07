@@ -84,9 +84,9 @@ def api_update_appointments(request, pk):
         status = content.get("status")
 
         if status == "canceled":
-            Appointment.objects.filter(id=pk).update(status="canceled")
+            Appointment.objects.filter(id=pk).update(status="Canceled")
         elif status == "finished":
-            Appointment.objects.filter(id=pk).update(status="finished")
+            Appointment.objects.filter(id=pk).update(status="Finished")
         else:
             return JsonResponse({"message": "Invalid status"}, status=400)
 

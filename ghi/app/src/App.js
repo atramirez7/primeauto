@@ -140,7 +140,7 @@ function App() {
             <Route path="new" element={<TechnicianForm technicians={technicians} getTechnicians={getTechnicians} />} />
           </Route>
           <Route path="appointments">
-            <Route index element={<AppointmentList appointments={appointments}/>} />
+            <Route index element={<AppointmentList appointments={appointments} getAppointments={getAppointments} />} />
             <Route path="new" element={<AppointmentForm appointments={appointments} getAppointments={getAppointments} />} />
             <Route path="history" element={<AppointmentHistory appointments={appointments} getAppointments={getAppointments} />} />
           </Route>

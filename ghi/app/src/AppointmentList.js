@@ -1,5 +1,5 @@
 
-function AppointmentList ({ appointments }) {
+function AppointmentList ({ appointments, getAppointments }) {
 
   const handleButtonClick = async (event, buttonID, id) => {
     event.preventDefault();
@@ -33,6 +33,7 @@ function AppointmentList ({ appointments }) {
               },
             }
         await fetch(finishURL,fetchConfig)
+        getAppointments()
     }
   }
 
