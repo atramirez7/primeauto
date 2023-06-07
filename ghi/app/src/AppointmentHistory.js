@@ -1,9 +1,37 @@
-
+import React, { useState } from "react";
 
 function AppoinmentHistory ({ appointments }) {
-    return (
+  const [search, setSearch] = useState("");
+  const [filteredAppointments, setFilteredAppointments] = useState([]);
+
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const searchResults = appointments.filter((appointment) =>
+    appointment.vin.includes(search)
+    );
+    setFilteredAppointments(searchResults);
+  };
+
+  return (
         <>
+        <div>
         <h1>Service History</h1>
+        <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+            <input
+            type="text"
+            className="form-control"
+            placeholder="Search by VIN"
+            value={search}
+            onChange={handleSearch} />
+            </div>
+            <button type="submit" className="btn btn-primary">Search</button>
+        </form>
+        </div>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -18,7 +46,7 @@ function AppoinmentHistory ({ appointments }) {
             </tr>
           </thead>
           <tbody>
-            {appointments.map(appointment => {
+            {filteredAppointments.map(appointment => {
               const date = new Date(appointment.date_time);
               const formattedDate = date.toLocaleDateString("en-US", {
                 month: "2-digit",
