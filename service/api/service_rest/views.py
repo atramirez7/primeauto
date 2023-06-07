@@ -45,7 +45,7 @@ def api_list_appointments(request):
     if request.method == "GET":
         appointments = Appointment.objects.all()
         return JsonResponse(
-                {"appoinments": appointments},
+                {"appointments": appointments},
                 encoder=AppointmentEncoder,
             )
 
@@ -56,7 +56,7 @@ def api_list_appointments(request):
             technician = Technician.objects.get(pk=technician_id)
             content["technician"] = technician
             vin_auto = content["vin"]
-            if AutomobileVO.objects.filter(vin=vin_auto).exists():
+            if AutomobileVO.objects.filter(vin=vin_auto, sold=True).exists():
                 content["vip"] = True
 
             appointment = Appointment.objects.create(**content)
