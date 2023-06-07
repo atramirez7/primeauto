@@ -21,15 +21,22 @@ def api_list_technicians(request):
             safe=False
         )
 
-    else:
-        content = json.loads(request.body)
+    else:  #POST
+        try:
+            content = json.loads(request.body)
 
-        technician = Technician.objects.create(**content)
-        return JsonResponse(
-            technician,
-            encoder=TechnicianEncoder,
-            safe=False
-        )
+            technician = Technician.objects.create(**content)
+            return JsonResponse(
+                technician,
+                encoder=TechnicianEncoder,
+                safe=False
+            )
+
+        except:
+            response = JsonResponse({"message": "Could not create technician"})
+            response.status_code = 400
+            return response
+
 
 @require_http_methods(["DELETE"])
 def api_delete_technicians(request, pk):
@@ -38,7 +45,10 @@ def api_delete_technicians(request, pk):
         return JsonResponse({"deleted": count > 0})
 
     except Technician.DoesNotExist:
-        return JsonResponse({"message": "Does not exist"})
+        response = JsonResponse({"message": "Cannot delete. Technican cannot be found"})
+        response.status_code = 404
+        return response
+
 
 @require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
@@ -68,7 +78,7 @@ def api_list_appointments(request):
 
         except:
             response = JsonResponse(
-                {"message": "Could not create the appointment"}
+                {"message": "Could not create appointment"}
             )
             response.status_code = 400
             return response
