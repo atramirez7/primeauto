@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function SalesPersonHistory ({ sales }) {
+function SalespersonHistory ({ sales }) {
 
     return (
         <table className="table table-dark">
