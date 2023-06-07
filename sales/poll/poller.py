@@ -23,9 +23,9 @@ def poll(repeat=True):
             print(content)
             for auto in content['autos']:
                 AutomobileVO.objects.update_or_create(
+                    vin=auto['vin'],
                     id=auto['id'],
                     defaults={
-                        "vin": auto["vin"],
                         "sold": auto["sold"],
                     }
                 )

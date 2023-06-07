@@ -7,6 +7,9 @@ class AutomobileVO(models.Model):
     vin = models.CharField(max_length=17, unique=True)
     sold = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.vin
+
 
 
 class Salesperson(models.Model):
@@ -14,11 +17,19 @@ class Salesperson(models.Model):
     last_name = models.CharField(max_length=100)
     employee_id = models.CharField(max_length=100, unique=True)
 
+    def __str__(self):
+        return self.first_name
+
+
 class Customer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     address = models.CharField(max_length=200, null=True)
     phone_number = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.first_name
+
 
 
 class Sale(models.Model):

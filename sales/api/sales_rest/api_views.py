@@ -42,12 +42,14 @@ class SaleListEncoder(ModelEncoder):
         "automobile",
         "salesperson",
         "customer",
+
     ]
 
     encoders = {
         "automobile": AutomobileVOEncoder(),
         "salesperson": SalespeopleListEncoder(),
         "customer": CustomerListEncoder(),
+        "sold": AutomobileVOEncoder(),
     }
 
     # def get_extra_data(self, o):
@@ -148,12 +150,9 @@ def api_list_sales(request, id=None):
         customer_id = content["customer_id"]
         customer = Customer.objects.get(id=customer_id)
         content["customer"] = customer
-        automobile_id = content["automobile_id"]
-        automobile = AutomobileVO.objects.get(id=automobile_id)
+        automobile_vin = content["automobile"]
+        automobile = AutomobileVO.objects.get(vin=automobile_vin)
         content["automobile"] = automobile
-        # sold_id = content["sold"]
-        # sold = AutomobileVO.objects.get(id=sold_id)
-        # content["sold"] = sold
         print(content)
         sale = Sale.objects.create(**content)
         return JsonResponse(

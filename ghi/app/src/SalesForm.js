@@ -31,7 +31,7 @@ function SalesForm({ automobiles, salespersons, customers, getSales }) {
     async function handleSubmit (e) {
     e.preventDefault()
     const data = {}
-    data.automobile_id = vin
+    data.automobile = vin
     data.salesperson_id = salesperson
     data.customer_id = customer
     data.price = price
@@ -68,7 +68,7 @@ function SalesForm({ automobiles, salespersons, customers, getSales }) {
                   <option value="">Choose a Vin</option>
                     {automobiles.map(automobile => {
                         return(
-                            <option key={automobile.id} value={automobile.id}>
+                            <option key={automobile.vin} value={automobile.vin}>
                                 {automobile.vin}
                             </option>
                         )
