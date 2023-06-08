@@ -101,7 +101,6 @@ function App() {
     if(response.ok){
       const data = await response.json();
       setSales(data.sale)
-      console.log(data)
     }
   }
 
