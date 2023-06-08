@@ -49,13 +49,7 @@ class SaleListEncoder(ModelEncoder):
         "automobile": AutomobileVOEncoder(),
         "salesperson": SalespeopleListEncoder(),
         "customer": CustomerListEncoder(),
-        "sold": AutomobileVOEncoder(),
     }
-
-    # def get_extra_data(self, o):
-    #     count = AutomobileVO.objects.filter(vin=o.vin).count()
-    #     return {"sold": count > 0}
-
 
 @require_http_methods(["GET", "POST"])
 def api_list_salespeople(request, id=None):
@@ -153,7 +147,6 @@ def api_list_sales(request, id=None):
         automobile_vin = content["automobile"]
         automobile = AutomobileVO.objects.get(vin=automobile_vin)
         content["automobile"] = automobile
-        print(content)
         sale = Sale.objects.create(**content)
         return JsonResponse(
             sale,

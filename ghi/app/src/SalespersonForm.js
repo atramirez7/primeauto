@@ -6,6 +6,7 @@ function SalespersonForm ({ salespersons, getSalespersons }) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [employeeId, setEmployeeId] = useState('')
+    const [employed, setEmployed] = useState(false)
 
     function handleFirstNameChange (e) {
         const value = e.target.value;
@@ -45,8 +46,14 @@ function SalespersonForm ({ salespersons, getSalespersons }) {
         setFirstName('')
         setLastName('')
         setEmployeeId('')
-        console.log(newSalesperson)
+        setEmployed(true)
+
         }
+  }
+
+  let messageClasses = 'alert alert-success d-none mb-0';
+  if (employed) {
+    messageClasses = 'alert alert-success mb-0';
   }
 
 
@@ -71,6 +78,9 @@ return (
           </div>
           <button className="btn btn-primary">Create</button>
         </form>
+        <div className={messageClasses} id="success-message">
+                You're employed now!!
+              </div>
       </div>
     </div>
   </div>

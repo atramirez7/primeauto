@@ -8,6 +8,7 @@ function ModelForm ({ getModels, manufacturers }) {
     const [name, setName] = useState('')
     const [picture, setPicture] = useState('')
     const [manufacturer, setManufacturer] = useState('')
+    const [create, setCreate] = useState(false)
 
     // useEffect(() =>{
     //     getManufacturers()
@@ -51,8 +52,14 @@ function ModelForm ({ getModels, manufacturers }) {
         setName('')
         setPicture('')
         setManufacturer('')
+        setCreate(true)
 
         }
+    }
+
+    let messageClasses = 'alert alert-success d-none mb-0';
+    if (create) {
+      messageClasses = 'alert alert-success mb-0';
     }
 
 
@@ -84,6 +91,9 @@ function ModelForm ({ getModels, manufacturers }) {
               </div>
               <button className="btn btn-primary">Create</button>
             </form>
+            <div className={messageClasses} id="success-message">
+                Your model has been created!
+              </div>
           </div>
         </div>
       </div>
