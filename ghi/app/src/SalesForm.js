@@ -8,6 +8,7 @@ function SalesForm({ getAutomobiles, salespersons, customers, getSales }) {
     const [salesperson, setSalesperson] = useState('')
     const [customer, setCustomer] = useState('')
     const [price, setPrice] = useState('')
+    const [purchased, setPurchased] = useState(false)
 
 
     async function filterAutomobiles(){
@@ -83,9 +84,16 @@ function SalesForm({ getAutomobiles, salespersons, customers, getSales }) {
     setSalesperson('')
     setCustomer('')
     setPrice('')
+    setPurchased(true)
 
     }
     }
+
+    let messageClasses = 'alert alert-success d-none mb-0';
+    if (purchased) {
+      messageClasses = 'alert alert-success mb-0';
+    }
+
 
     return (
         <div className="row">
@@ -135,6 +143,9 @@ function SalesForm({ getAutomobiles, salespersons, customers, getSales }) {
               </div>
               <button className="btn btn-primary">Create</button>
             </form>
+            <div className={messageClasses} id="success-message">
+                You sold a car!
+              </div>
           </div>
         </div>
       </div>
