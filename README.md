@@ -41,7 +41,168 @@ CarCar is made up of 3 microservices which interact with one another.
 # Service microservice
 
 Service microservice is used to keep track of **Technicians** with their first name, last name, and employee id; **Service Appointment** that contains the details collected in the form: VIN, customer name, date and time of the appointment, the assigned technician's name, and the reason for the service.
-It polls data from **Inventory** microservice to get VIN and sold status. When VIN provided for an appointment exists in VIN inventory, it has a special feature that
+It polls data from **Inventory** microservice to get VIN and sold status. It has a special feature when VIN provided for an appointment exists in VIN inventory, that appointment will have VIP status.
+
+## Endpoints to send and view data - through Insomnia
+
+### Technician
+
+| Action | Request | URL
+| ----------- | ----------- | ----------- |
+| List Technicians | GET | http://localhost:8080/api/technicians/
+| Create a technician | POST | http://localhost:8080/api/technicians/
+| Delete a specific technician	 | DELETE | http://localhost:8080/api/technicians/:id/
+
+Creating a technician
+- Example **JSON body** to create a technician
+
+```
+{
+	"first_name": "Rocco",
+	"last_name": "Tufts",
+	"employee_id": "r_tufts"
+}
+```
+
+Expected return value
+
+```
+{
+	"first_name": "Rocco",
+	"last_name": "Tufts",
+	"employee_id": "r_tufts",
+	"id": 7
+}
+```
+
+
+List all technicians expected return value
+
+```
+{
+	"technicians": [
+		{
+			"first_name": "Alex",
+			"last_name": "Smiths",
+			"employee_id": "a_smiths",
+			"id": 3
+		},
+		{
+			"first_name": "Alonso",
+			"last_name": "Diez",
+			"employee_id": "d_alonso",
+			"id": 1
+		},
+		{
+			"first_name": "Cecilia",
+			"last_name": "Miranda",
+			"employee_id": "cm_3022",
+			"id": 4
+		},
+		{
+			"first_name": "Miguel",
+			"last_name": "Batista",
+			"employee_id": "m_batista",
+			"id": 2
+		},
+		{
+			"first_name": "Rocco",
+			"last_name": "Tufts",
+			"employee_id": "r_tufts",
+			"id": 7
+		},
+		{
+			"first_name": "Susan",
+			"last_name": "Thomas",
+			"employee_id": "t_susan09",
+			"id": 6
+		}
+	]
+}
+```
+
+### Appoinment
+
+| Action | Request | URL
+| ----------- | ----------- | ----------- |
+| List appointments | GET | http://localhost:8080/api/appointments/
+| Create an appointment | POST | http://localhost:8080/api/appointments/
+| Delete an appointment	 | DELETE | http://localhost:8080/api/appointments/:id/
+| Set appointment status to "canceled"	 | PUT | http://localhost:8080/api/appointments/:id/cancel/
+| Set appointment status to "finished"	 | PUT | http://localhost:8080/api/appointments/:id/finish/
+
+Creating an appointment
+- Example **JSON body** to create an appointment
+
+```
+{
+	"date_time": "2023-06-04T12:00:00+00:00",
+	"reason": "Oil Change",
+	"vin": "2G2FV22G5X2221544",
+	"customer": "Amanda M.",
+	"technician_id": 1
+}
+```
+
+Expected return value
+
+```
+{
+	"date_time": "2023-06-04T12:00:00+00:00",
+	"reason": "Oil Change",
+	"status": "created",
+	"vin": "2G2FV22G5X2221544",
+	"customer": "Amanda M.",
+	"vip": false,
+	"id": 30,
+	"technician": {
+		"first_name": "Alonso",
+		"last_name": "Diez",
+		"employee_id": "d_alonso",
+		"id": 1
+	}
+}
+```
+
+
+List all appointments expected return value
+
+```
+{
+	"appointments": [
+		{
+			"date_time": "2023-06-10T14:05:00+00:00",
+			"reason": "Tire Rotation",
+			"status": "finished",
+			"vin": "2G2FV22G5X2221544",
+			"customer": "Jamie S.",
+			"vip": false,
+			"id": 20,
+			"technician": {
+				"first_name": "Cecilia",
+				"last_name": "Miranda",
+				"employee_id": "cm_3022",
+				"id": 4
+			}
+		},
+		{
+			"date_time": "2023-06-10T21:54:00+00:00",
+			"reason": "Oil Change",
+			"status": "created",
+			"vin": "2G2FV22G5X2221544",
+			"customer": "Susan A.",
+			"vip": false,
+			"id": 28,
+			"technician": {
+				"first_name": "Alonso",
+				"last_name": "Diez",
+				"employee_id": "d_alonso",
+				"id": 1
+			}
+		},
+	]
+}
+```
 
 # Sales microservice
 
