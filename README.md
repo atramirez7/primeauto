@@ -12,7 +12,7 @@ Team:
 1. Fork this repository
 ​
 2. Clone the forked repository onto your local computer:
-git clone <<https://gitlab.com/atramirez7/project-beta/-/tree/main>>
+git clone <<https://gitlab.com/atramirez7/project-beta>>
 ​
 3. Build and run the project using Docker with these commands:
 ```
