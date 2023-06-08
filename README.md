@@ -212,8 +212,7 @@ List all appointments expected return value
 # Sales microservice
 
 Sales microservice keeps track of **Salespersons** personal info and a unique employee ID. Takes in **customer** info and stores them in a database for later use. The microservice can record a **Sale** takes information from **Salesperson** who sold the car and **customer** who purchased the car and puts them together in a convenient list.
-It takes data from the **Inventory** microservice via polling service such as, manufacturers, vehicle model, and the unique automobile that can be sold.
-
+It takes data from the **Inventory** microservice via polling service. It polls for AutomobileVO model to get automobile vins and sold status.
 ## Endpoints to send and view data - through Insomnia
 
 ### Customer
@@ -466,3 +465,122 @@ List manufacturers expected return value
 | Vehicle model detail | GET | http://localhost:8100/api/models/**id**/
 | Update a vehicle model | PUT | http://localhost:8100/api/models/**id**/
 | Delete a vehicle model | DELETE | http://localhost:8100/api/models/**id**/
+
+
+- Example **JSON body** to create a Vehicle
+-You cannot create manufacters with the same **name** it is a unique field.
+
+```
+{
+  "name": "Tesla",
+  "picture_url": "https://www.motortrend.com/uploads/sites/5/2020/07/2018-Tesla-Model-3-18.jpg",
+	"manufacturer_id": 1
+}
+```
+
+Expected return value
+```
+{
+	"href": "/api/models/1/",
+	"id": 1,
+	"name": "Model 3",
+	"picture_url": "https://www.motortrend.com/uploads/sites/5/2020/07/2018-Tesla-Model-3-18.jpg",
+	"manufacturer": {
+		"href": "/api/manufacturers/1/",
+		"id": 1,
+		"name": "Tesla"
+	}
+}
+```
+List vehicle models exprected return value
+
+```
+{
+	"models": [
+		{
+			"href": "/api/models/1/",
+			"id": 1,
+			"name": "Model 3",
+			"picture_url": "https://www.motortrend.com/uploads/sites/5/2020/07/2018-Tesla-Model-3-18.jpg",
+			"manufacturer": {
+				"href": "/api/manufacturers/1/",
+				"id": 1,
+				"name": "Tesla"
+			}
+		}
+    ]
+}
+```
+
+### Automobiles
+
+| Action | Request | URL
+| ----------- | ----------- | ----------- |
+| List automobiles | GET | http://localhost:8100/api/automobiles/
+| Create an automobile | POST | http://localhost:8100/api/automobiles/
+| Automobile detail | GET | http://localhost:8100/api/automobiles/**vin**/
+| Update a automobile | PUT | http://localhost:8100/api/automobiles/**vin**/
+| Delete a automobile | DELETE | http://localhost:8100/api/automobiles/**vin**/
+
+Note: We use **vin** here in the specifed urls instead of id's.
+
+Create a automobile
+
+```
+{
+  "color": "white",
+  "year": 2013,
+  "vin": "1HD1KEM1XDB602203",
+  "model_id": 1
+}
+```
+Expected return value
+```
+{
+	"href": "/api/automobiles/1HD1KEM1XDB602203/",
+	"id": 1,
+	"color": "white",
+	"year": 2013,
+	"vin": "1HD1KEM1XDB602203",
+	"model": {
+		"href": "/api/models/1/",
+		"id": 1,
+		"name": "Model 3",
+		"picture_url": "https://www.motortrend.com/uploads/sites/5/2020/07/2018-Tesla-Model-3-18.jpg",
+		"manufacturer": {
+			"href": "/api/manufacturers/1/",
+			"id": 1,
+			"name": "Tesla"
+		}
+	},
+	"sold": false
+}
+```
+
+List automobiles expected return value
+
+```
+{
+	"autos": [
+		{
+			"href": "/api/automobiles/1HD1KEM1XDB602203/",
+			"id": 1,
+			"color": "white",
+			"year": 2013,
+			"vin": "1HD1KEM1XDB602203",
+			"model": {
+				"href": "/api/models/1/",
+				"id": 1,
+				"name": "Model 3",
+				"picture_url": "https://www.motortrend.com/uploads/sites/5/2020/07/2018-Tesla-Model-3-18.jpg",
+				"manufacturer": {
+					"href": "/api/manufacturers/1/",
+					"id": 1,
+					"name": "Tesla"
+				}
+			},
+			"sold": true
+		},
+    ]
+}
+```
