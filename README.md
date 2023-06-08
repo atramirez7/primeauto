@@ -34,6 +34,11 @@ CarCar is made up of 3 microservices which interact with one another.
 ![Img](Diagram.png)
 
 ## API Documentation
+
+## Value Objects
+### Service microservice
+VIN and sold (status) are polled from Inventory microservice and the values are stored in AutomobileVO model. The data is integrated in service microservice when creating an appointment if the VIN numbe provided for an appointment matched the VIN that polling from inventory, the vip status for that appoinment will be TRUE (is vip? = yes).
+
 ### URLs and Ports
 
 
