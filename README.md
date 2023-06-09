@@ -397,8 +397,10 @@ It takes data from the **Inventory** microservice via polling service. It polls 
 1. create a manufacturer
 2. create a vehicle
 3. create an automobile
-4. Wait a minute (2 to be safe) after creating an automobile for the poller to poll the VIN information into Sales microservice AutomobileVO
-5. Record a sale.
+4. create a salesperson
+5. create a customer
+6. Wait a minute (2 to be safe) after creating an automobile for the poller to poll the VIN information into Sales microservice AutomobileVO
+7. Record a sale.
 
 
 
