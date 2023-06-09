@@ -48,7 +48,6 @@ function AutomobileForm ( { getAutomobiles } ) {
         }
 
         const response = await fetch(automobileUrl, fetchConfig);
-        console.log(response);
         if (response.ok) {
           const newAutomobiles = await response.json();
           getAutomobiles()

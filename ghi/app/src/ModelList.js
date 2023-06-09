@@ -1,6 +1,6 @@
 
 
-function ModelList ({ models, getModels }) {
+function ModelList ({ models }) {
 
     return(
         <table className="table table-dark">

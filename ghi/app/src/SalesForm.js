@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 function SalesForm({ getAutomobiles, salespersons, customers, getSales }) {
 
@@ -138,7 +137,7 @@ function SalesForm({ getAutomobiles, salespersons, customers, getSales }) {
                 </select>
               </div>
               <div className="mb-3">
-                <input onChange={handlePriceChange} placeholder="$" type="number" id="price" name="price" className="form-control" />
+                <input onChange={handlePriceChange} placeholder="$" type="number" id="price" name="price" className="form-control" required/>
                 <label htmlFor="price">Price</label>
               </div>
               <button className="btn btn-primary">Create</button>

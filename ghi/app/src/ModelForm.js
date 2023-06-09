@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function ModelForm ({ getModels, manufacturers }) {
@@ -10,9 +10,6 @@ function ModelForm ({ getModels, manufacturers }) {
     const [manufacturer, setManufacturer] = useState('')
     const [create, setCreate] = useState(false)
 
-    // useEffect(() =>{
-    //     getManufacturers()
-    // }, [])
 
     function handleNameChange (e) {
         const value = e.target.value;
