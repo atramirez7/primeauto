@@ -91,6 +91,7 @@ List manufacturers expected return value
 | Delete a vehicle model | DELETE | http://localhost:8100/api/models/**id**/
 
 
+Create a vehicle
 - Example **JSON body** to create a Vehicle
 -You cannot create manufacters with the same **name** it is a unique field.
 
@@ -149,7 +150,7 @@ List vehicle models exprected return value
 Note: We use **vin** here in the specifed urls instead of id's.
 
 Create a automobile
-
+- Example **JSON body** to create a automobile
 ```
 {
   "color": "white",
