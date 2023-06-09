@@ -99,10 +99,10 @@ def api_salespeople_detail(request, id):
 
     else:
         request.method == "DELETE"
-        try:
+        if Salesperson.objects.filter(id=id).exists():
             count, _ = Salesperson.objects.filter(id=id).delete()
             return JsonResponse({"deleted": count > 0})
-        except Salesperson.DoesNotExist:
+        else:
             response = JsonResponse(
                 {"message": "Could not find salesperson to delete"}
             )
@@ -158,10 +158,10 @@ def api_customer_detail(request, id):
             return response
     else:
         request.method == "DELETE"
-        try:
+        if Customer.objects.filter(id=id).exists():
             count, _ = Customer.objects.filter(id=id).delete()
             return JsonResponse({"deleted": count > 0})
-        except Customer.DoesNotExist:
+        else:
             response = JsonResponse(
                 {"message": "Could not find customer to delete"}
             )
@@ -227,10 +227,10 @@ def api_sale_detail(request, id):
 
     else:
         request.method == "DELETE"
-        try:
+        if Sale.objects.filter(id=id).exists():
             count, _ = Sale.objects.filter(id=id).delete()
             return JsonResponse({"deleted": count >0})
-        except Sale.DoesNotExist:
+        else:
             response = JsonResponse(
                 {"message": "Could not find Sale to delete"}
             )
