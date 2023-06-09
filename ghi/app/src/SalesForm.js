@@ -45,9 +45,9 @@ function SalesForm({ getAutomobiles, salespersons, customers, getSales }) {
     }
 
     async function updateSoldStatus (vin) {
-      const automobileUrl = 'http://localhost:8100/api/automobiles/' + vin + "/"
+      const automobileUrl = 'http://localhost:8100/api/automobiles/' + vin + '/'
       const fetchConfig = {
-        method: 'put',
+        method: "put",
         body: JSON.stringify({"sold": true}),
         headers: {
           "Content-Type": "application/json"
@@ -80,6 +80,7 @@ function SalesForm({ getAutomobiles, salespersons, customers, getSales }) {
     await updateSoldStatus(vin)
     getAutomobiles()
     getSales()
+    setVin('')
     setSalesperson('')
     setCustomer('')
     setPrice('')
@@ -101,7 +102,7 @@ function SalesForm({ getAutomobiles, salespersons, customers, getSales }) {
             <h1>Record a Sale</h1>
             <form onSubmit={handleSubmit} id="create-sale-form">
               <div className="form-floating mb-3">
-                <select onChange={handleVinChange} name="automobiles" id="automobiles" className="form-select" required>
+                <select onChange={handleVinChange} value={vin} name="automobiles" id="automobiles" className="form-select" required>
                   <option value="">Choose a Vin</option>
                     {automobiles.map(automobile => {
                         return(
@@ -113,7 +114,7 @@ function SalesForm({ getAutomobiles, salespersons, customers, getSales }) {
                 </select>
               </div>
               <div className="mb-3">
-                <select onChange={handleSalespersonChange} name="salespersons" id="salespersons" className="form-select" required>
+                <select onChange={handleSalespersonChange} value={salesperson} name="salespersons" id="salespersons" className="form-select" required>
                   <option value="">Choose a Salesperson</option>
                     {salespersons.map(salesperson => {
                         return(
@@ -125,7 +126,7 @@ function SalesForm({ getAutomobiles, salespersons, customers, getSales }) {
                 </select>
               </div>
               <div className="mb-3">
-                <select onChange={handleCustomerChange} name="customers" id="customers" className="form-select" required>
+                <select onChange={handleCustomerChange} value={customer} name="customers" id="customers" className="form-select" required>
                   <option value="">Choose a Customer</option>
                     {customers.map(customer => {
                         return(
@@ -137,7 +138,7 @@ function SalesForm({ getAutomobiles, salespersons, customers, getSales }) {
                 </select>
               </div>
               <div className="mb-3">
-                <input onChange={handlePriceChange} placeholder="$" type="number" id="price" name="price" className="form-control" required/>
+                <input onChange={handlePriceChange} value={price} placeholder="$" type="number" id="price" name="price" className="form-control" required/>
                 <label htmlFor="price">Price</label>
               </div>
               <button className="btn btn-primary">Create</button>

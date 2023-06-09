@@ -90,7 +90,7 @@ function AutomobileForm ( { getAutomobiles } ) {
                             <label htmlFor="vin">VIN</label>
                         </div>
                         <div className="mb-3">
-                            <select onChange={handleModelChange} required name="model" id="model" className="form-select">
+                            <select onChange={handleModelChange} value={model} required name="model" id="model" className="form-select">
                             <option value="">Choose a model</option>
                             {models.map(model => {
                                         return (
