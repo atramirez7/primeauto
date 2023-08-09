@@ -1,0 +1,9 @@
+
+.p-5 text-center bg-image {
+    background-image: url('./image/carbg.jpeg');
+}
+
+.carimg {
+    width: 100%;
+    display: inline-flex;
+}
